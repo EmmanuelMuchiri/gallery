@@ -1,4 +1,4 @@
-#!/home/mannuh/Documents/DJANGO/gallery/virtual/bin/python
+#!/home/mannuh/Documents/DJANGO/gallery/gallery/virtual/bin/python
 from django.core import management
 
 if __name__ == "__main__":
