@@ -4,7 +4,7 @@ from django.shortcuts import render,redirect
 from .models import Image
 # Create your views here.
 def welcome(request):
-    return HttpResponse('Welcome to the Art Galla')
+    return render(request,'index.html')
 
 def image(request,image_id):
     try:
