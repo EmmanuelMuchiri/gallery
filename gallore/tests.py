@@ -4,16 +4,20 @@ from .models import Image,Location,Category
 
 
 
-# class ImageTestClass(TestCase):
+class ImageTestClass(TestCase):
 
-#     def setUp(self):
-#         self.Maasai_Mara=Location.objects.Create(name="Maasai_Mara")
-#         self.Animals=Category.objects.Create(name="Animals")
-#         self.image=Image(name="Nature",description="Wildlife photography",Category=self.Animals,location=self.Maasai_Mara,upload_date="27/08/2019",image="https://www.google.com")
+    def setUp(self):
+        self.Maasai_Mara = Location.objects.create(name='Maasai_Mara')
+        self.nature = Category.objects.create(name='nature')
 
-#     def test__instance(self):
-#         self.assertEquals(self.image.name,"Nature")
+        self.wild_animals = Image.objects.create(
+            name ='wild_animals',upload_date="26/08/2019",description='Cat Family Photos',location = self.Maasai_Mara,)
 
+        self.wild_animals.category.add(self.nature)
+
+    def test_instance(self):
+        self.wild_animals.save()
+        self.assertTrue(isinstance(self.wild_animals, Image))
 
 class LocationTestClass(TestCase):
     def setUp(self):
