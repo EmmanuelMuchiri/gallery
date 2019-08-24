@@ -19,6 +19,12 @@ class ImageTestClass(TestCase):
         self.wild_animals.save()
         self.assertTrue(isinstance(self.wild_animals, Image))
 
+    def test_save_image(self):
+        self.wild_animals.save_image()
+        images=Image.objects.all()
+        self.assertTrue(len(images)>0)
+
+
 class LocationTestClass(TestCase):
     def setUp(self):
         self.Maasai_Mara = Location(name='Maasai_Mara')
