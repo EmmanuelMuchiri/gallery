@@ -23,6 +23,11 @@ class ImageTestClass(TestCase):
         self.wild_animals.save_image()
         images=Image.objects.all()
         self.assertTrue(len(images)>0)
+    
+    def test_delete_image(self):
+        self.wild_animals.save_image()
+        self.wild_animals.delete_image()
+        self.assertTrue(len(Image.objects.all()) == 0)
 
 
 class LocationTestClass(TestCase):
