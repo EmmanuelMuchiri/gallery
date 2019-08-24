@@ -15,12 +15,13 @@ from .models import Image,Location,Category
 #         self.assertEquals(self.image.name,"Nature")
 
 
-# class LocationTestClass(TestCase):
-#     def setUp(self):
-#         self.Maasai_Mara=Location(name="Maasai_Mara")
+class LocationTestClass(TestCase):
+    def setUp(self):
+        self.Maasai_Mara = Location(name='Maasai_Mara')
 
-#     def test__instance(self):
-#         self.assertEquals(self.Maasai_Mara.name,"Maasai_Mara")
+    def test_instance(self):
+        self.Maasai_Mara.save()
+        self.assertTrue(isinstance(self.Maasai_Mara, Location))
 
 class CategoryTestClass(TestCase):
 
