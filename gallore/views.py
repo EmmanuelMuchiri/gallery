@@ -1,14 +1,24 @@
 import datetime as dt
 from django.http import HttpResponse,Http404
 from django.shortcuts import render,redirect
-from .models import Image
+from .models import Image,Category,Location
 # Create your views here.
 def welcome(request):
     return render(request,'index.html')
 
-def image(request,image_id):
-    try:
-        image = Image.objects.get(id = image_id)
-    except DoesNotExist:
-        raise Http404()
-    return render(request,"pics/pics.html", {"image":image})
+def image(request):
+    images = Image.objects.all()
+    location = Location.objects.all()
+    category = Category.objects.all()
+   
+    if 'location' in request.GET and request.GET['location']:
+        name = request.GET.get('location')
+        images = Image.view_location(name)
+
+    elif 'category' in request.GET and request.GET['category']:
+        cat = request.GET.get('category')
+        images = Image.view_category(cat)
+        return render(request, 'image.html', {"name":name,"images":images,"cat":cat })
+    
+
+    return render(request, 'image.html', {"images":images,"location":location,"category":category})
