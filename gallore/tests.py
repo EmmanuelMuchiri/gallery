@@ -29,11 +29,19 @@ class ImageTestClass(TestCase):
         self.wild_animals.delete_image()
         self.assertTrue(len(Image.objects.all()) == 0)
     
-    def test_update(self):
+    def test_update_image(self):
         self.wild_animals.save_image()
         self.wild_animals.name = 'wild_animals'
         self.assertTrue(self.wild_animals.name == 'wild_animals')
 
+    def test_get_image_by_id(self):
+        pass
+    
+    def test_search_image(category):
+        pass
+
+    def test_filter_by_location(location):
+        pass
 
 class LocationTestClass(TestCase):
     def setUp(self):
