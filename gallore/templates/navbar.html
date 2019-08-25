@@ -1,11 +1,19 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'image' %}">Art Galla</a>
+      <a class="navbar-brand font-weight-bold" href="{% url 'main_gallery' %}">Gallery</a>
     </div>
+    <!-- Adding a search form -->
 
-    <!-- Adding a search form  -->
-
-    <!-- search form end -->
+    <div class="col-sm-4 col-md-4 navbar-right">
+      <form action="{% url 'search' %}" class="navbar-form" role="search">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search Category" name="category">
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </nav>
