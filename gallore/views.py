@@ -1,24 +1,21 @@
-import datetime as dt
+from django.shortcuts import render
 from django.http import HttpResponse,Http404
-from django.shortcuts import render,redirect
-from .models import Image,Location,categories
+from .models import Image,Location
+
 # Create your views here.
-def welcome(request):
-    return render(request,'index.html')
+def main_gallery(request):
+    images = Image.all_images()
+    locations = Location.objects.all()
+    return render(request, 'index.html', {"images":images,"locations":locations})
 
-def image(request):
-    images = Image.objects.all()
-    location = Location.objects.all()
-    category = Category.objects.all()
-   
-    if 'location' in request.GET and request.GET['location']:
-        name = request.GET.get('location')
-        images = Image.view_location(name)
+def location(request,location):
+    locations = Location.objects.all()
+    selected_location = Location.objects.get(id = location)
+    images = Image.objects.filter(location = selected_location.id)
+    return render(request, 'location.html', {"location":selected_location,"locations":locations,"images":images})
 
-    elif 'category' in request.GET and request.GET['category']:
-        cat = request.GET.get('category')
-        images = Image.view_category(cat)
-        return render(request, 'pics/pics.html', {"name":name,"images":images,"cat":cat })
-    
-
-    return render(request, 'pics/pics.html', {"images":images,"location":location,"category":category})
+def search(request):
+    if 'category' in request.GET and request.GET["category"]:
+        search_term = request.GET.get("category")
+        searched_images = Image.search_by_category(search_term)
+    return render(request,'search.html',{"images":searched_images,"category":search_term})
