@@ -4,8 +4,8 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns=[
-    url('^$',views.welcome,name = 'welcome'),
-    url('^$',views.image,name ='image')
+    # url('^$',views.welcome,name = 'welcome'),
+    # url('^$',views.name ='image')
 ]
 # if settings.DEBUG:
-#     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+#     urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

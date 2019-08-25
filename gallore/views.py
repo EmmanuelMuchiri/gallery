@@ -1,7 +1,7 @@
 import datetime as dt
 from django.http import HttpResponse,Http404
 from django.shortcuts import render,redirect
-from .models import Image,Category,Location
+from .models import Image,Location,categories
 # Create your views here.
 def welcome(request):
     return render(request,'index.html')
@@ -18,7 +18,7 @@ def image(request):
     elif 'category' in request.GET and request.GET['category']:
         cat = request.GET.get('category')
         images = Image.view_category(cat)
-        return render(request, 'image.html', {"name":name,"images":images,"cat":cat })
+        return render(request, 'pics/pics.html', {"name":name,"images":images,"cat":cat })
     
 
-    return render(request, 'image.html', {"images":images,"location":location,"category":category})
+    return render(request, 'pics/pics.html', {"images":images,"location":location,"category":category})
