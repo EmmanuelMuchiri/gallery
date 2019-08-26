@@ -5,7 +5,7 @@ from .models import Image, Location, categories
 
 class ImageTestClass(TestCase):
     # Set up method
-    def setUp(self):
+    def setUp(self):    
         self.location = Location(name = "Nairobi")
         self.location.save_location()
         self.image = Image(id = 1,title = "test",description = "test description",location = self.location, image_url = "path/to/image")
